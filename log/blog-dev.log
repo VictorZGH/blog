@@ -1,0 +1,31 @@
+2020-01-04 11:48:05.191  INFO 15720 --- [restartedMain] com.victor.blog.BlogApplication          : Starting BlogApplication on DESKTOP-CRJRK9K with PID 15720 (started by Victor in E:\Program file\java\javaee\blog1)
+2020-01-04 11:48:05.211 DEBUG 15720 --- [restartedMain] com.victor.blog.BlogApplication          : Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020-01-04 11:48:05.211  INFO 15720 --- [restartedMain] com.victor.blog.BlogApplication          : The following profiles are active: dev
+2020-01-04 11:48:05.325  INFO 15720 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in E:\Program file\java\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/E:/Program%20file/java/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/E:/Program%20file/java/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/E:/Program%20file/java/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/E:/Program%20file/java/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/E:/Program%20file/java/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/E:/Program%20file/java/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2020-01-04 11:48:05.325  INFO 15720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-01-04 11:48:05.326  INFO 15720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-01-04 11:48:06.829  INFO 15720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-01-04 11:48:06.983  INFO 15720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135ms. Found 1 JPA repository interfaces.
+2020-01-04 11:48:07.478  INFO 15720 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-01-04 11:48:08.235  INFO 15720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-01-04 11:48:08.252  INFO 15720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-01-04 11:48:08.253  INFO 15720 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-01-04 11:48:08.562  INFO 15720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-01-04 11:48:08.563  INFO 15720 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3237 ms
+2020-01-04 11:48:08.836  INFO 15720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-01-04 11:48:08.960  INFO 15720 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.9.Final}
+2020-01-04 11:48:09.164  INFO 15720 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-01-04 11:48:09.305  INFO 15720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-01-04 11:48:09.720  INFO 15720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-01-04 11:48:09.761  INFO 15720 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-01-04 11:48:10.885  INFO 15720 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-01-04 11:48:10.900  INFO 15720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-01-04 11:48:10.947  INFO 15720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-01-04 11:48:11.942  INFO 15720 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-01-04 11:48:12.055  INFO 15720 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-01-04 11:48:13.696  INFO 15720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-01-04 11:48:13.700  INFO 15720 --- [restartedMain] com.victor.blog.BlogApplication          : Started BlogApplication in 9.838 seconds (JVM running for 14.611)
+2020-01-04 11:48:56.780  INFO 15720 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-04 11:48:56.781  INFO 15720 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-01-04 11:48:56.812  INFO 15720 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 31 ms
+2020-01-04 11:49:03.510  WARN 15720 --- [http-nio-8080-exec-8] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [2,097] milliseconds.
