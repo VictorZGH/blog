@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-    <title>管理后台</title>
+    <title>标签管理</title>
     <link rel="stylesheet" href="../../static/css/semantic.min.css" th:href="@{css/semantic.min.css}">
     <link rel="stylesheet" href="../../static/css/my.css" th:href="@{/css/my.css}">
 </head>
 <body>
     <!--导航-->
-    <nav th:replace="admin/_fragments :: menu(0)" class="ui inverted attached segment m-padding-tb-middle m-shadow-small">
+    <nav th:replace="admin/_fragments :: menu(3)" class="ui inverted attached segment m-padding-tb-middle m-shadow-small">
         <div class="ui container">
             <div class="ui menu secondary inverted stackable">
                 <h2 class="ui teal header item">Blog</h2>
@@ -26,7 +26,7 @@
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                            <a href="#" class="item">注销</a>
                             <a href="#" class="item">修改个人资料</a>
                         </div>
                     </div>
@@ -40,8 +40,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" th:href="@{/admin/blogs/input}" class="item">发布</a>
-                <a href="#" th:href="@{/admin/blogs}" class="active item">列表</a>
+                <a href="#" th:href="@{/admin/tags/input}" class="item">新增</a>
+                <a href="#" th:href="@{/admin/tags}" class="active item">列表</a>
             </div>
         </div>
     </div>
@@ -49,13 +49,46 @@
     <!--中间内容-->
     <div class="m-container-small m-padding-tb-large">
         <div class="ui container">
-            <div class="ui success large message">
-                <h2>Hi</h2>
-                <p>郑喜亮，欢迎登录</p>
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header">提示：</div>
+                <p th:text="${message}">恭喜：操作成功</p>
             </div>
-            <img src="../../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui rounded bordered fluid image">
+            <table class="ui compact teal table">
+                <thead class="ui center aligned">
+                <tr>
+                    <th></th>
+                    <th>名称</th>
+                    <th>操作</th>
 
+                </tr>
+                </thead>
+                <tbody class="ui center aligned">
+                <tr th:each="tag,iterStat : ${page.content}">
+                    <th th:text="${iterStat.count}">1</th>
+                    <th th:text="${tag.name}">刻意练习</th>
+                    <th>
+                        <a href="#" th:href="@{/admin/tags/input/{id}(id=${tag.id})}" class="ui mini basic teal button m-margin-tiny">编辑</a>
+                        <a href="#" th:href="@{/admin/tags/delete/{id}(id=${tag.id})}" class="ui mini basic red button">删除</a>
+                    </th>
+                </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="6">
+                            <div class="ui" style="display: inline-block;" th:if="${page.totalPages}>1">
+                                <a th:href="@{/admin/tags(page=${page.number}-1)}" class="ui button small" th:unless="${page.first}">上一页</a>
+                                <a th:href="@{/admin/tags(page=${page.number}+1)}" class="ui button small" th:unless="${page.last}">下一页</a>
+                            </div>
+                            <a th:href="@{/admin/tags/input}" class="ui small right floated basic teal button m-margin-right-large">新增</a>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
+        <!--header-->
+
+
     </div>
 
 
@@ -90,7 +123,7 @@
             <p class="m-center-margin m-text-center m-opacity-tiny m-text-spaced m-text-thin">Copyright © 2019-2020 Victor Zheng</p>
         </div>
     </footer>
-    <!--/*/<th:block th:replace="admin/_fragments :: script"/*/-->
+    <!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
     <script src="../../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
     <!--/*/</th:block>/*/-->
@@ -101,6 +134,13 @@
         $('.ui.dropdown').dropdown({
             on:'hover'
         });
+        $('.message.close')
+            .on('click',function(){
+                $(this)
+                    .closest('.message')
+                    .transition('fade');
+            });
+
     </script>
 </body>
 </html>

@@ -12,6 +12,9 @@
 .m-padding-right-large {
     padding-right:2em !important;
 }
+.m-padding-right-small {
+    padding-right:1.5em !important;
+}
 /*right and bottom*/
 .m-padding-rb-large {
     padding-right:2em !important;
@@ -130,6 +133,9 @@
 .m-inline-block {
     display: inline-block !important;
 }
+.m-no-dispaly {
+    display: none;
+}
 
 .m-mobile-show {
     display: none !important;
@@ -178,6 +184,9 @@
 .m-color-black {
     color: #333 !important;
 }
+.m-teal {
+    color: #00B5AD !important;
+}
 
 /*-------opacity-----*/
 .m-opacity-mini{
@@ -192,6 +201,11 @@
     -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
     -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/*------------vertical-middle---------------*/
+.m-vertical-middle {
+    display: inline;
 }
 
 

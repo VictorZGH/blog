@@ -21,10 +21,13 @@
                 <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>归档</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
                 <div class="m-item right item m-mobile-hide">
-                    <div class="ui inverted transparent input">
-                        <input type="text" placeholder="Search......">
-                        <i class="search icon link"></i>
-                    </div>
+                    <form name="search" action="#" method="post" th:action="@{/search}" target="_blank">
+                        <div class="ui inverted transparent input">
+                            <input type="text" name="query" placeholder="Search......">
+                            <i onclick="document.forms['search'].submit()" class="search icon link"></i>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -34,7 +37,7 @@
     </nav>
 
     <!--中间内容-->
-    <div class="m-container">
+    <div class="m-container animated fadeIn">
         <div class="ui container">
             <div class="ui stackable grid">
                 <!--左侧内容-->
@@ -46,204 +49,57 @@
                                 <h3 class="ui teal header">博客</h3>
                             </div>
                             <div class="right aligned column">
-                                共<h3 class="ui orange header m-inline-block">14</h3>篇博客
+                                共<h3 class="ui orange header m-inline-block" th:text="${page.totalElements}">14</h3>篇博客
                             </div>
                         </div>
                     </div>
                     <!--content-->
                     <div class="ui attached segment">
-                        <div class="ui padded vertical segment m-padding-tb-large">
-                            <div class="ui mobile reversed stackable grid">
+                        <div class="ui padded vertical segment m-padding-tb-large" th:each="blog : ${page.content}">
+                            <div class="ui middle aligned mobile reversed stackable grid">
                                 <div class="eleven wide column">
-                                    <h3 class="ui header">前端工程师</h3>
-                                    <p class="m-text">这个网站给我们提供了很多的配色方案，我们直接使用就OK了。使用方法也很简单，鼠标移动到对应的颜色上，我们就可以看到颜色的十六进制码，复制这个颜色到工具里就可以使用了。</p>
+                                    <h3 class="ui header m-color-black"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" th:text="${blog.title}">前端工程师</a></h3>
+                                    <p class="m-text" th:text="|${blog.description}......|">这个网站给我们提供了很多的配色方案，我们直接使用就OK了。使用方法也很简单，鼠标移动到对应的颜色上，我们就可以看到颜色的十六进制码，复制这个颜色到工具里就可以使用了。</p>
                                     <div class="ui grid">
                                         <div class="eleven wide column">
                                             <div class="ui mini horizontal link list">
                                                 <div class="item">
-                                                    <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui avatar image">
+                                                    <img src="../static/images/cat.jpg" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image middle aligned">
                                                     <div class="content">
-                                                        <a href="#" class="header">郑喜亮</a>
+                                                        <a href="#" class="header middle aligned" th:text="${blog.user.nickname}">郑喜亮</a>
                                                     </div>
                                                 </div>
                                                 <div class="item">
-                                                    <i class="calendar icon"></i>2019.12.02
+                                                    <i class="calendar icon m-padding-right-small middle aligned"></i><span class="middle aligned" th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2019.12.02</span>
                                                 </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>2423
+                                                <div class="item middle aligned">
+                                                    <i class="eye icon m-padding-right-small"></i><span class="middle aligned" th:text="${blog.views}">2423</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="right aligned five wide column">
-                                            <a href="#" class="ui teal basic label m-padding-mini m-text-thin">认知升级</a>
+                                            <a href="#" class="ui teal basic label m-padding-mini m-text-thin" th:text="${blog.type.name}">认知升级</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui rounded image m-image-size">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="../static/images/cat.jpg" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image m-image-size">
                                     </a>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ui attached segment">
-                        <div class="ui padded vertical segment m-padding-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">前端工程师</h3>
-                                    <p class="m-text">这个网站给我们提供了很多的配色方案，我们直接使用就OK了。使用方法也很简单，鼠标移动到对应的颜色上，我们就可以看到颜色的十六进制码，复制这个颜色到工具里就可以使用了。</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui avatar image">
-                                                    <div class="content">
-                                                        <a href="#" class="header">郑喜亮</a>
-                                                    </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2019.12.02
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>2423
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" class="ui teal basic label m-padding-mini m-text-thin">认知升级</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui rounded image m-image-size">
-                                    </a>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui attached segment">
-                        <div class="ui padded vertical segment m-padding-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">前端工程师</h3>
-                                    <p class="m-text">这个网站给我们提供了很多的配色方案，我们直接使用就OK了。使用方法也很简单，鼠标移动到对应的颜色上，我们就可以看到颜色的十六进制码，复制这个颜色到工具里就可以使用了。</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui avatar image">
-                                                    <div class="content">
-                                                        <a href="#" class="header">郑喜亮</a>
-                                                    </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2019.12.02
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>2423
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" class="ui teal basic label m-padding-mini m-text-thin">认知升级</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui rounded image m-image-size">
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui attached segment">
-                        <div class="ui padded vertical segment m-padding-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">前端工程师</h3>
-                                    <p class="m-text">这个网站给我们提供了很多的配色方案，我们直接使用就OK了。使用方法也很简单，鼠标移动到对应的颜色上，我们就可以看到颜色的十六进制码，复制这个颜色到工具里就可以使用了。</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui avatar image">
-                                                    <div class="content">
-                                                        <a href="#" class="header">郑喜亮</a>
-                                                    </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2019.12.02
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>2423
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" class="ui teal basic label m-padding-mini m-text-thin">认知升级</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui rounded image m-image-size">
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui attached segment">
-                        <div class="ui padded vertical segment m-padding-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">前端工程师</h3>
-                                    <p class="m-text">这个网站给我们提供了很多的配色方案，我们直接使用就OK了。使用方法也很简单，鼠标移动到对应的颜色上，我们就可以看到颜色的十六进制码，复制这个颜色到工具里就可以使用了。</p>
-                                    <div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui mini horizontal link list">
-                                                <div class="item">
-                                                    <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui avatar image">
-                                                    <div class="content">
-                                                        <a href="#" class="header">郑喜亮</a>
-                                                    </div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2019.12.02
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>2423
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" class="ui teal basic label m-padding-mini m-text-thin">认知升级</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="../static/images/cat.jpg" th:src="@{/images/cat.jpg}" alt="" class="ui rounded image m-image-size">
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!--footer-->
-                    <div class="ui bottom attached segment">
+                    <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <a href="#" class="ui mini teal basic button">上一页</a>
+                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini teal basic button">上一页</a>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" class="ui mini teal basic button">下一页</a>
+                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini teal basic button">下一页</a>
                             </div>
                         </div>
                     </div>
@@ -258,12 +114,17 @@
                                     <i class="idea icon"></i>分类
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="#" target="_blank">more <i class="angle double right icon"></i></a>
+                                    <a href="#" th:href="@{/types/-1}" target="_blank">more<i class="angle double right icon"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="ui teal segment">
                             <div class="ui fluid vertical menu">
+                                <a href="#" th:href="@{types/{id}(id=${type.id})}" target="_blank" class="item" th:each="type : ${types}">
+                                    <span th:text="${type.name}">学习与日志</span>
+                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
+                                </a>
+                                <!--/*-->
                                 <a href="#" class="item">
                                     学习与日志
                                     <div class="ui teal basic left pointing label">13</div>
@@ -284,10 +145,7 @@
                                     学习与日志
                                     <div class="ui teal basic left pointing label">13</div>
                                 </a>
-                                <a href="#" class="item">
-                                    学习与日志
-                                    <div class="ui teal basic left pointing label">13</div>
-                                </a>
+                                <!--*/-->
                             </div>
                         </div>
                     </div>
@@ -297,17 +155,19 @@
                         <div class="ui secondary segment">
                             <div class="ui two column grid">
                                 <div class="column">
-                                    分类
+                                    标签
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="#">more <i class="angle double right icon"></i></a>
+                                    <a href="#" th:href="@{/tags/-1}" target="_blank">more<i class="angle double right icon"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="ui teal segment">
-                            <a href="#" target="_blank" class="ui basic teal left pointing label m-margin-tiny">
-                                方法论 <div class="detail">23</div>
+                            <a href="#" target="_blank" class="ui basic teal left pointing label m-margin-tiny" th:each="tag : ${tags}" th:href="@{/tags/{id}(id=${tag.id})}">
+                                <span th:text="${tag.name}">方法论</span>
+                                <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
                             </a>
+                            <!--/*-->
                             <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tiny">
                                 方论 <div class="detail">23</div>
                             </a>
@@ -326,7 +186,7 @@
                             <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tiny">
                                 方法论 <div class="detail">23</div>
                             </a>
-
+                            <!--*/-->
                         </div>
                     </div>
 
@@ -335,15 +195,17 @@
                         <div class="ui secondary segment">
                             <i class="bookmark icon"></i>最新推荐
                         </div>
+                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-color-black m-text-thin m-padding-left" th:text="${blog.title}">用户故事</a>
+                        </div>
+                        <!--/*-->
                         <div class="ui segment">
                             <a href="#" target="_blank" class="m-color-black m-text-thin m-padding-left">用户故事</a>
                         </div>
                         <div class="ui segment">
                             <a href="#" target="_blank" class="m-color-black m-text-thin m-padding-left">用户故事</a>
                         </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank" class="m-color-black m-text-thin m-padding-left">用户故事</a>
-                        </div>
+                        <!--*/-->
                     </div>
                     
                     <!--二维码-->
@@ -390,8 +252,10 @@
             <p class="m-center-margin m-text-center m-opacity-tiny m-text-spaced m-text-thin">Copyright © 2019-2020 Victor Zheng</p>
         </div>
     </footer>
+    <!--/*/<th:block th:replace="_fragments :: script"/*/-->
     <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <script src="../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
+    <!--/*/</th:block>/*/-->
     <script type="text/javascript">
         $('.menu.toggle').click(function(){
             $('.m-item').toggleClass('m-mobile-hide');

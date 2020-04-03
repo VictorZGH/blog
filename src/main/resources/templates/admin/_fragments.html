@@ -7,10 +7,7 @@
     <title th:replace="${title}">博客详情</title>
     <link rel="stylesheet" href="../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}">
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
-    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
-    <link rel="stylesheet" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
-    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
-    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
 </head>
 <body>
     <!--导航-->
@@ -18,9 +15,9 @@
         <div class="ui container">
             <div class="ui menu secondary inverted stackable">
                 <h2 class="ui teal header item">Blog</h2>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1}?'active'"><i class="home icon"></i>博客</a>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2}?'active'"><i class="idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3}?'active'"><i class="tags icon"></i>标签</a>
+                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1}?'active'"><i class="home icon"></i>博客</a>
+                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2}?'active'"><i class="idea icon"></i>分类</a>
+                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3}?'active'"><i class="tags icon"></i>标签</a>
                 <div class="right m-item menu m-mobile-hide">
                     <div class="ui dropdown item">
                         <div class="text">
@@ -50,21 +47,26 @@
                 </div>
                 <div class="four wide column">
                     <h4 class="ui inverted header">最新博客</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined">用户故事（User Story）</a>
-                        <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined">关于可以练习清单</a>
-                        <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined">失败要趁早</a>
+                    <div id="newblog-container">
+                        <div class="ui inverted link list" th:fragment="newblogList">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined" th:each="blog : ${newblogs}" th:text="${blog.title}">用户故事（User Story）</a>
+                            <!--/*-->
+                            <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined">关于可以练习清单</a>
+                            <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined">失败要趁早</a>
+                            <!--*/-->
+                        </div>
                     </div>
+
                 </div>
                 <div class="four wide column">
                     <h4 class="ui inverted header">联系我</h4>
                     <div class="ui inverted link list">
-                        <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined">Email:2844821406@126.com</a>
-                        <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined">QQ:2844821406</a>
+                        <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined" th:text="#{index.email}">Email:2844821406@126.com</a>
+                        <a href="#" class="item m-opacity-mini m-text-spaced m-text-thin m-text-lined" th:text="#{index.qq}">QQ:2844821406</a>
                     </div>
                 </div>
                 <div class="five wide column">
-                    <h4 class="ui inverted header">最新博客</h4>
+                    <h4 class="ui inverted header">网站说明</h4>
                     <p class="ui inverted m-opacity-mini m-text-spaced m-text-thin m-text-lined">这是我的个人博客，欢迎大家交流讨论</p>
                 </div>
             </div>
@@ -72,6 +74,20 @@
             <p class="m-center-margin m-text-center m-opacity-tiny m-text-spaced m-text-thin">Copyright © 2019-2020 Victor Zheng</p>
         </div>
     </footer>
+    <th:block th:fragment="script">
+        <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+        <script src="../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
+        <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+        <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+        <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+        <script src="../static/lib/scrollTo/jquery.scrollTo.min.js" th:src="@{/lib/scrollTo/jquery.scrollTo.min.js}"></script>
+        <script src="../static/lib/waypoint/jquery.waypoints.min.js" th:src="@{/lib/waypoint/jquery.waypoints.min.js}"></script>
+        <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+        <script type="text/javascript">
+            $("#newblog-container").load(/*[[@{/footer/newBlog}]]*/"/footer/newBlog");
+        </script>
+    </th:block>
+
 
 </body>
 </html>

@@ -12,6 +12,8 @@ public class Blog {
     @GeneratedValue
     private Long id;
     private String title;
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     private String content;
     private String firstPicture;
     private String flag;
@@ -38,6 +40,20 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
 
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
+    private String description;
+
+    public String getTagsIds() {
+        return tagsIds;
+    }
+
+    public void setTagsIds(String tagsIds) {
+        this.tagsIds = tagsIds;
+    }
+
+    @Transient
+    private String tagsIds;
     public Blog() {
     }
 
@@ -175,6 +191,32 @@ public class Blog {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void init(){
+        this.tagsIds = tagsToIds(this.tags);
+    }
+
+
+    private String tagsToIds(List<Tag> tags) {
+        if (tags != null && tags.size() > 0) {
+            StringBuffer stringBuffer = new StringBuffer();
+            for (Tag tag : tags) {
+                stringBuffer.append(tag.getId()).append(",");
+            }
+            String ids = stringBuffer.toString();
+            return ids.substring(0, ids.length() - 1);
+        } else {
+            return this.tagsIds;
+        }
     }
 
     @Override

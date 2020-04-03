@@ -1,6 +1,12 @@
 spring:
   thymeleaf:
     mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
   profiles:
     active: dev
+
+comment.avatar: /images/cat.jpg
+
 
